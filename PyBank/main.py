@@ -14,3 +14,5 @@ with open(csv_path, 'r') as file_handler:
 total_month = len(bank_data)
 print("The total number of months is:", total_month)
 
+# total_net = sum(bank_data[1])
+# print(total_net)
