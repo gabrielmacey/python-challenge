@@ -8,21 +8,21 @@ pybank_csv = os.path.join('Resources', 'PyBank.csv')
 with open(pybank_csv) as csvfile:
     csvreader = csv.reader(csvfile, delimiter=',')
 
-    print(csvreader)
+    #List representation of CSV file
+    pybank = list((csvreader))
 
-    csv_header = next(csvreader)
-    print(f'CSV Header: {csv_header}')
-    print(type(csv_header))
+    #Find the length of the list and subtract one for header
+    total_months = len(pybank)-1
 
-    for row in csvreader:
-        print(row)
-    
-    pybank = list(csvreader)
-    
+    #Print out number of months
+    print("Total Months:", total_months)
 
-
-
-print("The total number of months is:", total_month)
+    #Print out the sum of Profit/Losses
+    del pybank(0)
+    column = 1
+    print(sum(row[1] for row in pybank))
+    net_total = (pybank[]) #This gives me the first row
+    print(net_total)
 
 ## total_net = sum()
 ## print("The total net gain/loss is:", total_net)
