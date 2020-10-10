@@ -72,3 +72,11 @@ pybank_results = (
 )
         
 print(pybank_results)
+
+output = os.path.join("..", "Analysis")
+
+with open(output, "w") as csvfyle:
+
+    csvwriter = csv.writer(csvfyle)
+
+    csvfyle.write(pybank_results)
