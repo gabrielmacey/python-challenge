@@ -51,4 +51,24 @@ with open(pybank_csv) as csvfile:
         last_net = int(row[1])
         nc_list.append(net_change)
 
+        #Now need to find the max and the min
+        if (int(row[1])> max_money):
+            max_money = int(net_change)
+            max_date = row[0]
+        if (int(row[1]) < min_money):
+            min_money = int(net_change)
+            min_date = row[0]
+
+total_change = round(sum(nc_list)/len(nc_list),2)
+
+pybank_results = (
+    f"\n\n Financial Analysis\n"
+    f"-----------------------\n"
+    f"Total Months: {total_months}\n"
+    f"Net Profit: ${net_total}\n"
+    f"Average Change: ${total_change}\n"
+    f"Greatest Change in Profits: {max_date} ${max_money}\n"
+    f"Greatest Change in Losses: {min_date} ${min_money}\n"
+)
         
+print(pybank_results)
