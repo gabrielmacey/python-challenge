@@ -51,4 +51,13 @@ with open(pybank_csv) as csvfile:
         last_net = int(row[1])
         nc_list.append(net_change)
 
+        #Now need to find the max and the min
+        #if (int(row[1])> max_money):
+           # max_money = int(net_change)
+           # max_money = row[0]
+        #if (int(row[1]) > min_money):
+          #  min_money = int(net_change)
+          #  min_money = row[0]
+
+total_change = round(sum(nc_list)/len(nc_list),2)
         
