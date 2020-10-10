@@ -22,21 +22,33 @@ new_pybank = []
 total_profits = []
 #Read the CSV files and check to see the types 
 with open(pybank_csv) as csvfile:
+    #List representation of CSV file
     csvreader = csv.reader(csvfile, delimiter=',')
     csvheader = next(csvreader)
     firstrow = next(csvreader)
     print(f'CSV Header: {firstrow}')
     print(type(firstrow))
-    total_months+=1
-    #List representation of CSV file
-    
 
+    #Find number of months
+    total_months+=1
+    
     net_total += int(firstrow[1])
     last_net = int(firstrow[1])
-    #Print out number of months
-    #print('Total Months:', total_months)
+    
 
-    #for row in csvreader:
-        #date.append(row[0])
-        #profit.append(int(row[1]))
+    for row in csvreader:
+        date.append(row[0])
+        profit.append(int(row[1]))
+        #Find the net total
+        net_total += int(row[1])
+        #Find number of months
+        total_months+=1
+        increase = int(row[1])-last_net
+        total_change = total_change + increase
+        #Finding net change
+        net_change = int(row[1])- last_net
+        #Resetting the last net
+        last_net = int(row[1])
+        nc_list.append(net_change)
+
         
