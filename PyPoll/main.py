@@ -15,23 +15,24 @@ with open(csv_path, 'r') as csvfile:
     for row in csvreader:
         total_votes += 1
         candidate_name = row[2]
-        if candidate_name not in candidate:
-            candidate.append(candidate_name)
-            candidate_name = 0
-            print(candidate_name)
+        
+        if candidate_name not in candidate_votes:
+            candidate_votes[candidate_name] = 0
+    
+        candidate_votes[candidate_name] += 1
 
-    for candidate_1 in candidate_votes:
-        votes = candidate_votes.get(candidate_1)
-        votes_percent = votes/total_votes
-        votes_percent = round(votes_percent, 2)
-        print(votes_percent)   
+    print("Election Results")
+    print("--------------------")
+    print(f"Total Votes: {total_votes}")
+    print("-------------------------")
 
+    winner = (None, 0)
+    for candidate_name in candidate_votes:
+        candidate_vote_tally = candidate_votes[candidate_name]
+        votes_percent = candidate_vote_tally / total_votes
+        votes_percent = "{:.2%}".format(votes_percent)
+        if candidate_vote_tally > winner[1]:
+            winner = (candidate_name, candidate_vote_tally)
+        print(f'{candidate_name}: {votes_percent} {candidate_vote_tally} votes')
 
-election_results = (
-    f"\n\n Election Results\n"
-    f"-----------------------\n"
-    f"Total Votes: {total_votes}\n"
-    f"-------------------------\n"
-    f"{candidate_votes}\n"
-)
-print(election_results,end="")
+    print(f"Winner: {winner[0]}")
