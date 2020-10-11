@@ -21,10 +21,11 @@ with open(csv_path, 'r') as csvfile:
     
         candidate_votes[candidate_name] += 1
 
-    print("Election Results")
-    print("--------------------")
-    print(f"Total Votes: {total_votes}")
-    print("-------------------------")
+    output = []
+    output.append("Election Results")
+    output.append("--------------------")
+    output.append(f"Total Votes: {total_votes}")
+    output.append("-------------------------")
 
     winner = (None, 0)
     for candidate_name in candidate_votes:
@@ -33,6 +34,13 @@ with open(csv_path, 'r') as csvfile:
         votes_percent = "{:.2%}".format(votes_percent)
         if candidate_vote_tally > winner[1]:
             winner = (candidate_name, candidate_vote_tally)
-        print(f'{candidate_name}: {votes_percent} {candidate_vote_tally} votes')
+        output.append(f'{candidate_name}: {votes_percent} {candidate_vote_tally} votes')
 
-    print(f"Winner: {winner[0]}")
+    output.append(f"Winner: {winner[0]}")
+    print(output)
+
+
+filepath = os.path.join("Analysis", "Analysis.txt")
+with open(filepath, "w") as csvfyle:
+    csvwriter = csv.writer(csvfyle)
+    csvfyle.write("\n".join(output))
